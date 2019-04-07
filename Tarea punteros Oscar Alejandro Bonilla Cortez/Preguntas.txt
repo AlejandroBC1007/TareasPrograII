@@ -1,0 +1,86 @@
+//Programa creado por: Oscar Alejandro Bonilla Cortez
+//Carnet: BC18035        Programacion II       Grupo 02
+
+Ejercicio No. 1 
+El siguiente ejercicio muestra que los parámetros pasados por valor se pueden modificar dentro de la función sin cambiar la variable que representa al parámetro en
+el llamador. Digite (póngale extensión .cpp a su archivo), compile y ejecute el programa.
+
+#include <iostream.h> 
+void DemoLocal( int valor ) {
+	cout <<  “Dentro de DemoLocal, valor =” << valor << endl;
+	valor = 75;
+	cout << “Dentro de DemoLocal, valor =” << valor << endl;
+	}
+void main( void) {
+	int n = 10;
+	cout << “Antes de llamar a DemoLocal, n= “ << n << endl;
+	DemoLocal(n);
+	cout << “Después de llamar a DemoLocal, n= “ << n << endl;
+	cout << “Pulse Intro para continuar”;
+	cin.get();
+	} 
+ 
+¿Cómo cambia el valor de n, si es que lo hace?
+R// El valor de n no cambia ya que se pasa a la funcion por valor, y ese valor lo toma la variable de la función la cual es cambiada, pero el valor de n nunca
+cambia, por lo que al imprimirla luego de llamar la funcion n tiene el mismo valor original.
+
+
+_______________________________________________________________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________________________________________________________________
+
+
+
+Ejercicio No. 2 El siguiente ejemplo muestra el uso de tres rutinas de intercambio de datos diferentes. Digite (póngale extensión .cpp a su archivo), compile y ejecute
+el programa.  
+ 
+#include <stdio.h>
+#include <conio.h>
+
+void Intercambio(int, int);
+void Intercambio(int *, int *);
+void Intercambio(int, int &, int &); 
+ 
+void main() {
+	int x = 22, y = 33;
+	printf("x = %d\t y = %d\n", x, y);
+	Intercambio(x,y);               // llamada por valor
+	printf("x = %d\t y = %d\n", x, y); 
+                                                                                                                                                                    5 
+	Intercambio(1, x, y);             // llamada por referencia
+	printf("x = %d\t y = %d\n", x, y);
+	Intercambio(&x, &y);         // llamada por puntero
+	printf("x = %d\t y = %d\n", x, y);
+	getch();
+	} 
+ 
+void Intercambio( int a, int b) {
+	int aux;
+	aux = a;
+	a = b;
+	b = aux;
+	}
+
+void Intercambio(int *a, int *b) {
+	int aux;
+	aux = *a;
+	*a = *b;
+	*b = aux;
+	}
+
+void Intercambio( int i, int &a, int &b) {
+	int aux=i;
+	aux = a;
+	a = b;
+	b = aux;
+	} 
+ 
+Como resultado de la llamada a Intercambio por valor (la primera llamada de Intercambio()), ¿se cambian los valores de a y b?, ¿por qué?
+R//No cambia porque ejecuta la funcion que recibe los parametros por valor, por lo tanto, al ser ejecutada y al pasarle las variables estas al finalizar la ejecucion de la funcion mantendran los valores iniciales 
+independientemente lo que haya ocurriod en la ejecucion de la función.
+ 
+Después de la segunda llamada a Intercambio() (llamada por referencia), ¿hubo modificación de a y b?, ¿por qué?
+R//Si cambian porque los parametros han sido pasados por referencias, y por esta razon los cambios que tengan las variables dentro de la ejecucion de la funcion se guardaran en la misma ubicacion en la que estaban los parametros que le fueron pasados. Por esta razon modificaran su valor.
+ 
+¿Es equivalente la tercer llamada a Intercambio() con la segunda llamada a la misma función?, ¿por qué?
+R//Si cambian porque en ambos se estan pasando paramentros por referencias, lo cual generaria el mismo efecto, y en lo que son diferentes es que la tercera llama a un tercer parametro numerico que no cumple ninguna papel vital en la ejecucion de la función.
+
